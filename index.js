@@ -6,7 +6,7 @@ const cors = require(`cors`);
 
 app.set(`trust proxy`, true);
 app.use(cors());
-app.use(express.static(`./allstatic`));
+app.use('/', express.static('allstatic'));
 
 app.get(`/`, async(istek, cevap) => {
   cevap.sendFile(`${__dirname}/allstatic/index.html`);
