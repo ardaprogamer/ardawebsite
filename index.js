@@ -10,7 +10,7 @@ app.use(cors());
 console.log(__dirname);
 
 app.get(`/`, async(istek, cevap) => {
-  cevap.sendFile(`${__dirname}/allstatic/index.html`);
+  cevap.sendFile(`${__dirname}/public/index.html`);
 });
 
 app.get(`/login`, async(istek, cevap) => {
