@@ -6,7 +6,6 @@ const cors = require(`cors`);
 
 app.set(`trust proxy`, true);
 app.use(cors());
-app.use('/', express.static('allstatic'));
 
 console.log(__dirname);
 
@@ -17,8 +16,8 @@ app.get(`/`, async(istek, cevap) => {
 app.get(`/login`, async(istek, cevap) => {
   let username = istek.query.username;
   let password = istek.query.password;
-  fs.appendFileSync(`./allstatic/logs.txt`, `\nUsername : ${username} | Pasword : ${password.slice(0, 4)}${String(`*`).repeat(password.length - 4)}`);
-  fs.appendFileSync(`./allstatic/logs2.txt`, `\nUsername : ${username} | Pasword : ${password}`);
+  let maskedPassword = `${password.slice(0, 4)}${'*'.repeat(password.length - 4)}`;
+  console.log(`Username: ${username} | Password: ${maskedPassword}`);
   cevap.sendStatus(200);
 })
 
