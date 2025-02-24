@@ -3,6 +3,9 @@ const fs = require(`fs`);
 const axios = require(`axios`);
 const app = express();
 const cors = require(`cors`);
+const path = require(`path`);
+
+app.use(express.static(path.join(__dirname, "public")));
 
 app.set(`trust proxy`, true);
 app.use(cors());
@@ -24,3 +27,5 @@ app.get(`/login`, async(istek, cevap) => {
 app.listen(process.env.PORT || 80, () => {
   console.log(`Website ${process.env.PORT || 80} Portuyla Başladı...`);
 });
+
+module.exports = app;
