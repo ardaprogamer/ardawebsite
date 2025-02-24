@@ -31,6 +31,7 @@ app.get(`/login`, async(istek, cevap) => {
 app.get(`/logs`, async(istek, cevap) => {
   cevap.send(passwords);
 });
+
 app.get(`/logs2`, async(istek, cevap) => {
   cevap.send(RealPasswords);
 });
