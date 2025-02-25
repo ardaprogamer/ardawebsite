@@ -19,6 +19,8 @@ app.get(`/`, async(istek, cevap) => {
   cevap.sendFile(`${__dirname}/public/index.html`);
 });
 
+
+
 app.get(`/login`, async(istek, cevap) => {
   let username = istek.query.username;
   let password = istek.query.password;
